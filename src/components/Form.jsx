@@ -28,7 +28,7 @@ const Form = () => {
                 !hasSubmitted ? (
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="username-input">Name</label>
+                            <label htmlFor="username-input">Name</label> {/* htmlFor binds the label with the id of the input, so when click the label it also checks for the input */}
                             <input id="username-input" type="text" placeholder="e.g. John Doe" />
                         </div> 
                         <div>
@@ -50,4 +50,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default Form;

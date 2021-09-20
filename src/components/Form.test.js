@@ -49,4 +49,26 @@ it("should render the basic fields", () => {
 
  // .. Write your code here..
 
+ it ("Check the screen shows 'Thank you for submitting' when valid credentials are input", () => {
+    // act
+    render(<Form />);
+
+    // arrange
+    const nameInput = screen.getByRole("textbox", { name: /name/i });
+    userEvent.type(nameInput, "salva"); // simulating that user is entering an empty string as name input
+
+    const emailInput = screen.getByRole("textbox", { name: /email/i });
+    userEvent.type(emailInput, "ppl@ppl.com");
+
+                // run a click on sign in button
+    userEvent.click(screen.getByRole("button", { name: /Sign In/i }));
+
+    // assert
+    const success = screen.getByText("Thank you for submitting! We'll be in touch");
+    expect(success).toBeTruthy();
+            // use queryByText when we check for something that will not be on the page (otherwise will throw an error!)
+    const alert = screen.queryByText("Sorry something went wrong");
+    expect(alert).toBeFalsy();
+});
+
 
